@@ -1,0 +1,6 @@
+import os
+DATABASE_URL = os.environ["DATABASE_URL"]
+JWT_SECRET = os.environ["JWT_SECRET"]
+JWT_EXPIRES_MIN = int(os.environ.get("JWT_EXPIRES_MIN", "43200"))
+RC_WEBHOOK_SECRET = os.environ.get("REVENUECAT_WEBHOOK_SECRET", "")
+FREE_HABIT_LIMIT = 3
