@@ -11,9 +11,9 @@ from .models import User
 pwd = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2 = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
-def hash_pw(p: str) -> str: return pwd.hash(p)
-def verify_pw(p: str, h: str) -> bool: return pwd.verify(p, h)
-
+def hash_pw(p: str) -> str: return pwd.hash(p[:72])
+def verify_pw(p: str, h: str) -> bool: return pwd.verify(p[:72], h)
+    
 def make_token(user_id: str) -> str:
     exp = datetime.utcnow() + timedelta(minutes=JWT_EXPIRES_MIN)
     return jwt.encode({"sub": user_id, "exp": exp}, JWT_SECRET, algorithm="HS256")
